@@ -26,7 +26,6 @@ public class MenuManager : MonoBehaviour
         menuCanvasGroup.interactable = false;
         menuCanvasGroup.blocksRaycasts = false;
 
-        // Now pan the background
-        backgroundPan.StartPan();
+
     }
 }
