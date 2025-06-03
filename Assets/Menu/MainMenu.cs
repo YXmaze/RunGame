@@ -1,16 +1,32 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Collections;
 
-public class MainMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
+    public CanvasGroup menuCanvasGroup;       // Drag your menu CanvasGroup here
+    public BackgroundPan backgroundPan;       // Drag the BackgroundPan script here
+    public float fadeDuration = 1f;
+
     public void StartGame()
     {
-        SceneManager.LoadScene("FirstScene");  // Replace with the actual name of your game scene
+        StartCoroutine(FadeOutMenu());
     }
 
-    public void QuitGame()
+    private IEnumerator FadeOutMenu()
     {
-        Application.Quit();  // Only works in builds; shows in editor log for testing
-        Debug.Log("Quit Game");
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
+        {
+            elapsed += Time.deltaTime;
+            menuCanvasGroup.alpha = 1f - Mathf.Clamp01(elapsed / fadeDuration);
+            yield return null;
+        }
+
+        // Disable interactions
+        menuCanvasGroup.interactable = false;
+        menuCanvasGroup.blocksRaycasts = false;
+
+        // Now pan the background
+        backgroundPan.StartPan();
     }
 }
