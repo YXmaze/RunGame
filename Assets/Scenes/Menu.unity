@@ -385,7 +385,7 @@ MonoBehaviour:
   panSpeed: 100
   menuCanvasGroup: {fileID: 2065743253}
   fadeDuration: 1
-  nextSceneName: FirstScene
+  nextSceneName: Level 1
   waitAfterPan: 3
 --- !u!1 &1706869798
 GameObject:
