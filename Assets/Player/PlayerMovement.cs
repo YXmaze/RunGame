@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     private float defaultRunSpeed;
     private int defaultLayer;
 
+    //Sound
+    public AudioClip jumpSound;
+    public AudioClip slideSound;
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -37,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         defaultRunSpeed = runSpeed;
         defaultLayer = gameObject.layer;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -58,10 +63,13 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpCount++;
             animator.SetTrigger("Jump");
+
+            audioSource.PlayOneShot(jumpSound);
         }
 
-        if ((Input.GetKey(KeyCode.LeftShift)) && (isGrounded)){
-           
+        if ((Input.GetKey(KeyCode.LeftShift)) && (isGrounded))
+        {
+
             if (!isSliding)
             {
                 isSliding = true;
@@ -71,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Started Slide");
             }
         }
-         else
+        else
         {
             if (isSliding)
             {
@@ -80,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
                 slideCollider.enabled = false;
                 animator.SetBool("isSliding", false);
                 Debug.Log("Stopped Slide");
+
+                audioSource.PlayOneShot(slideSound);
             }
         }
 
@@ -125,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Player speed and collision restored.");
     }
 
-    
+
     public void StopInput()
     {
         canControl = false;
