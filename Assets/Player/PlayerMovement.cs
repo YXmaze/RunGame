@@ -26,12 +26,17 @@ public class PlayerMovement : MonoBehaviour
     private bool isSliding = false;
 
     private bool canControl = true;
-    
+
+    private float defaultRunSpeed;
+    private int defaultLayer;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        defaultRunSpeed = runSpeed;
+        defaultLayer = gameObject.layer;
     }
 
     private void Update()
@@ -87,21 +92,37 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(runSpeed, rb.linearVelocity.y);
     }
 
-    public void OnCollisionEnter2D(Collision2D collision){
-        if (collision.gameObject.CompareTag("Obstacle")){
-            runSpeed = runSpeed / 2f;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
             animator.SetTrigger("Hit");
             Debug.Log("Player hit an obstacle! Speed reduced.");
 
-            StartCoroutine(RestoreSpeed());
+            // Activate ghost mode
+            StartCoroutine(GhostModeCoroutine());
         }
     }
 
-    private IEnumerator RestoreSpeed()
+    private IEnumerator GhostModeCoroutine()
     {
-        yield return new WaitForSeconds(1.0f);
-        runSpeed = 10f; // Reset to default speed (or your preferred speed)
-        Debug.Log("Player speed restored.");
+        // Reduce speed
+        runSpeed = runSpeed / 1.2f;
+
+        // Activate ghost mode: temporarily disable obstacle collisions
+        gameObject.layer = LayerMask.NameToLayer("GhostMode");
+
+
+        // Wait 2.5 seconds
+        yield return new WaitForSeconds(2.5f);
+
+        // Restore speed
+        runSpeed = defaultRunSpeed;
+
+        // Restore collision
+        gameObject.layer = defaultLayer;
+
+        Debug.Log("Player speed and collision restored.");
     }
 
     
