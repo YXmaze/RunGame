@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -78,15 +79,33 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Update Speed parameter for idle/run blend
-        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("Speed", runSpeed);
     }
 
     public void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(runSpeed, rb.linearVelocity.y);
     }
+
+    public void OnCollisionEnter2D(Collision2D collision){
+        if (collision.gameObject.CompareTag("Obstacle")){
+            runSpeed = runSpeed / 2f;
+            animator.SetTrigger("Hit");
+            Debug.Log("Player hit an obstacle! Speed reduced.");
+
+            StartCoroutine(RestoreSpeed());
+        }
+    }
+
+    private IEnumerator RestoreSpeed()
+    {
+        yield return new WaitForSeconds(1.0f);
+        runSpeed = 10f; // Reset to default speed (or your preferred speed)
+        Debug.Log("Player speed restored.");
+    }
+
     
-     public void StopInput()
+    public void StopInput()
     {
         canControl = false;
     }
