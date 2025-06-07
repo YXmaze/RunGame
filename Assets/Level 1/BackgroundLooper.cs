@@ -3,7 +3,7 @@ using UnityEngine;
 public class BackgroundLooper : MonoBehaviour
 {
     public Transform player;
-    public float checkOffset = 2f; // A little buffer to trigger looping earlier
+    public float checkOffset = Camera.main.orthographicSize * Camera.main.aspect * 2f; 
 
     private float backgroundWidth;
     private static BackgroundLooper[] allBackgrounds;
