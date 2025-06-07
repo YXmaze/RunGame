@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ef56ac8c3449fe4438aba26d80be27c5
+guid: 533fde915c141b84d957640e1b4efccb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -785216042477568402
-    second: full_scene_0
+      213: -7514906054742553019
+    second: Untitled_Artwork-12_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: full_scene_0
+      name: Untitled_Artwork-12_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 7681
-        height: 1081
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 1960
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6ebf2c6b2a5a15f0800000000000000
-      internalID: -785216042477568402
+      spriteID: 54e43a642c0b5b790800000000000000
+      internalID: -7514906054742553019
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 1a8ee7fd57ac39345918f72a845a3d3d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      full_scene_0: -785216042477568402
+      Untitled_Artwork-12_0: -7514906054742553019
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

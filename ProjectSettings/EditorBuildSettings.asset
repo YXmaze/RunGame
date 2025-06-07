@@ -6,8 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/StartMenu.unity
+    guid: bf7dda83eed24974b93c820799d58567
+  - enabled: 1
+    path: Assets/Scenes/Blink.unity
+    guid: edac895125828834eb3eb365d5044b87
+  - enabled: 1
+    path: Assets/Scenes/MonStart.unity
+    guid: 75784a5d0fc5fab46b2954d4a8fff9d5
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/GoodEnd.unity
+    guid: 283658c92d93282479e6b51e1fd7c335
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cbdf529c71bfc3f49aa97565374f57b1
+guid: 68caad4fc52fda34e80faa28d5cad378
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1173904813009870033
-    second: full_scene_yaikeun_0
+      213: 7021606605714104404
+    second: Untitled_Artwork-13_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: full_scene_yaikeun_0
+      name: Untitled_Artwork-13_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 7681
-        height: 1501
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+        width: 1960
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f23ec6ccac375bfe0800000000000000
-      internalID: -1173904813009870033
+      spriteID: 450202e7102c17160800000000000000
+      internalID: 7021606605714104404
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bfe24ba68645f6e4fbaf76d088f6c4f8
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      full_scene_yaikeun_0: -1173904813009870033
+      Untitled_Artwork-13_0: 7021606605714104404
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

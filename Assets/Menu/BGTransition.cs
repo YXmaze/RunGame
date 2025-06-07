@@ -2,27 +2,34 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class BackgroundPan : MonoBehaviour
+public class BackgroundPanDownAndFade : MonoBehaviour
 {
     [Header("Background Settings")]
     public Transform background;            // Background object to move
-    public float panDistance = 60f;         // How far to pan UP (move background UP)
-    public float panSpeed = 30f;            // Speed of panning
+    public float panDistance = 12.8f;         // How far to pan DOWN
+    public float panSpeed = 4.5f;            // Speed of panning
 
     [Header("UI Fade Settings")]
-    public CanvasGroup menuCanvasGroup;     // CanvasGroup for title and press enter texts
-    public float fadeDuration = 1f;         // Duration of fade out
+    public CanvasGroup menuCanvasGroup;     // CanvasGroup to fade out
+    public float fadeDuration = 1.7f;         // Duration of fade out
 
     [Header("Scene Settings")]
-    public string nextSceneName = "FirstScene";            // Scene to load after pan and wait
-    public float waitAfterPan = 5f;         // Seconds to wait after pan before loading scene
+    public string nextSceneName;            // Scene to load after pan and wait
+    public float waitAfterPan = 4f;         // Seconds to wait after pan before loading scene
 
     private bool hasStarted = false;
     private Vector3 targetPosition;
 
     void Start()
     {
-        // Calculate the target position: move background UP by panDistance units
+        if (background == null || menuCanvasGroup == null)
+        {
+            Debug.LogError("Assign background Transform and CanvasGroup in inspector.");
+            enabled = false;
+            return;
+        }
+
+        // Target position is current position moved down by panDistance
         targetPosition = background.position + new Vector3(0, panDistance, 0);
     }
 
@@ -31,23 +38,23 @@ public class BackgroundPan : MonoBehaviour
         if (!hasStarted && Input.GetKeyDown(KeyCode.Return))
         {
             hasStarted = true;
-            StartCoroutine(StartPanAndFade());
+            StartCoroutine(FadeThenPan());
         }
     }
 
-    private IEnumerator StartPanAndFade()
+    private IEnumerator FadeThenPan()
     {
-        // Start fading out UI
+        // Fade out UI first
         yield return StartCoroutine(FadeOutCanvasGroup(menuCanvasGroup, fadeDuration));
 
-        // Pan background UP smoothly
+        // Then pan background down smoothly
         while (Vector3.Distance(background.position, targetPosition) > 0.01f)
         {
             background.position = Vector3.MoveTowards(background.position, targetPosition, panSpeed * Time.deltaTime);
             yield return null;
         }
 
-        // Wait for a few seconds after pan
+        // Wait after pan
         yield return new WaitForSeconds(waitAfterPan);
 
         // Load next scene
@@ -67,5 +74,7 @@ public class BackgroundPan : MonoBehaviour
         }
 
         canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 }
