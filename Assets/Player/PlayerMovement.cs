@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,12 +26,22 @@ public class PlayerMovement : MonoBehaviour
     private bool isSliding = false;
 
     private bool canControl = true;
-    
+
+    private float defaultRunSpeed;
+    private int defaultLayer;
+
+    //Sound
+    public AudioClip jumpSound;
+    public AudioClip slideSound;
+    private AudioSource audioSource;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        defaultRunSpeed = runSpeed;
+        defaultLayer = gameObject.layer;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -52,10 +63,13 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             jumpCount++;
             animator.SetTrigger("Jump");
+
+            audioSource.PlayOneShot(jumpSound);
         }
 
-        if ((Input.GetKey(KeyCode.LeftShift)) && (isGrounded)){
-           
+        if ((Input.GetKey(KeyCode.LeftShift)) && (isGrounded))
+        {
+
             if (!isSliding)
             {
                 isSliding = true;
@@ -65,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Started Slide");
             }
         }
-         else
+        else
         {
             if (isSliding)
             {
@@ -74,19 +88,55 @@ public class PlayerMovement : MonoBehaviour
                 slideCollider.enabled = false;
                 animator.SetBool("isSliding", false);
                 Debug.Log("Stopped Slide");
+
+                audioSource.PlayOneShot(slideSound);
             }
         }
 
         // Update Speed parameter for idle/run blend
-        animator.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
+        animator.SetFloat("Speed", runSpeed);
     }
 
     public void FixedUpdate()
     {
         rb.linearVelocity = new Vector2(runSpeed, rb.linearVelocity.y);
     }
-    
-     public void StopInput()
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            animator.SetTrigger("Hit");
+            Debug.Log("Player hit an obstacle! Speed reduced.");
+
+            // Activate ghost mode
+            StartCoroutine(GhostModeCoroutine());
+        }
+    }
+
+    private IEnumerator GhostModeCoroutine()
+    {
+        // Reduce speed
+        runSpeed = runSpeed / 1.2f;
+
+        // Activate ghost mode: temporarily disable obstacle collisions
+        gameObject.layer = LayerMask.NameToLayer("GhostMode");
+
+
+        // Wait 2.5 seconds
+        yield return new WaitForSeconds(2.5f);
+
+        // Restore speed
+        runSpeed = defaultRunSpeed;
+
+        // Restore collision
+        gameObject.layer = defaultLayer;
+
+        Debug.Log("Player speed and collision restored.");
+    }
+
+
+    public void StopInput()
     {
         canControl = false;
     }
