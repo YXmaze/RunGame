@@ -515,7 +515,7 @@ MonoBehaviour:
   - {fileID: 7021606605714104404, guid: 68caad4fc52fda34e80faa28d5cad378, type: 3}
   - {fileID: 2467362178255117525, guid: a4cf6521f3bdd0e46b8909475ecdc997, type: 3}
   frameRate: 7
-  cutsceneDuration: 3
+  cutsceneDuration: 2.5
   nextSceneName: Level 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

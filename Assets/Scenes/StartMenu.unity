@@ -685,7 +685,7 @@ MonoBehaviour:
   menuCanvasGroup: {fileID: 433116367}
   fadeDuration: 1.7
   nextSceneName: Blink
-  waitAfterPan: 4
+  waitAfterPan: 3
 --- !u!114 &1504351813
 MonoBehaviour:
   m_ObjectHideFlags: 0
