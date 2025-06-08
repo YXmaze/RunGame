@@ -447,7 +447,7 @@ MonoBehaviour:
   - {fileID: 7904174070147864415, guid: fa8604d2f44366e4994c270894a0ac3a, type: 3}
   - {fileID: 3241559841811556848, guid: ad07ba8e6d5b5e14aa32a4e0329beb45, type: 3}
   frameRate: 4
-  nextSceneName: 
+  nextSceneName: TryAgain
   cutsceneDuration: 5
 --- !u!114 &1569963663
 MonoBehaviour:
