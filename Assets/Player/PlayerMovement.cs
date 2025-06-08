@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D slideCollider;
     private bool isSliding = false;
 
-    private bool canControl = true;
 
     private float defaultRunSpeed;
     private int defaultLayer;
@@ -136,8 +135,5 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void StopInput()
-    {
-        canControl = false;
-    }
+  
 }

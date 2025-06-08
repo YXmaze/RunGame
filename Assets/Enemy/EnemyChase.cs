@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class EnemyChase : MonoBehaviour
 {
@@ -7,6 +9,8 @@ public class EnemyChase : MonoBehaviour
 
     private Vector2 startPos;
     private Vector2 playerStartPos;
+
+     public string nextSceneName;
 
     void Start()
     {
@@ -41,6 +45,7 @@ public class EnemyChase : MonoBehaviour
         Debug.Log("Triggered with: " + other.name);
         if (other.CompareTag("Player"))
         {
+            SceneManager.LoadScene(nextSceneName);
             transform.position = startPos;
             player.position = playerStartPos;
             GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
